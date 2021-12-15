@@ -60,10 +60,10 @@ function Form() {
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const toogleModal = () => {
-        setOpenQuestionModal(!openQuestionModal)
-        
-        if(editIndex)
+        if(editIndex !== null)
             setEditIndex(null)
+
+        setOpenQuestionModal(!openQuestionModal)
     }
 
     const handleFormTitle = (e) => {
