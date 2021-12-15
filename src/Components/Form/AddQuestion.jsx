@@ -192,7 +192,7 @@ function AddQuestion(props) {
                 }
 
                 {
-                    (question.type !== QUESTION_TYPE.TEXT.TYPE && question.options.length > 0) &&
+                    (question.type !== QUESTION_TYPE.TEXT.TYPE && question.multipleChoiceType === MULTIPLE_CHOICE_TYPE.ADD && question.options.length > 0) &&
                         question.options.map((option,index) => (
                             <div key={index} className="option-wrapper flex f-v-center f-h-center">
                                 <TextField

@@ -140,6 +140,13 @@ function Form() {
     return(
         <>
             <FormWrapper>
+                <Button 
+                    variant="contained" 
+                    color = "primary"
+                    onClick={() => history.push(URL_FORM_LIST)}
+                >
+                    Back
+                </Button>
                 {
                     error.open &&
                         <Alert severity="error">{error.message}</Alert>
@@ -197,7 +204,7 @@ function Form() {
                         toogleModal     = {toogleModal}
                         handleSubmit    = {addQuestion}
                         editIndex = {editIndex}
-                        editedQuestion  = {editIndex !== null ? form.questions[editIndex] : null}
+                        editedQuestion  = {editIndex !== null ? JSON.parse(JSON.stringify(form.questions[editIndex])) : null}
                     />
             }
         </>

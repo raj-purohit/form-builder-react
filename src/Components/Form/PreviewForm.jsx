@@ -33,6 +33,13 @@ function PreviewForm(props) {
 
     return(
         <FormWrapper>
+            <Button 
+                variant="contained" 
+                color = "primary"
+                onClick={() => history.push(URL_FORM_LIST)}
+            >
+                Back
+            </Button>
             {
                 form &&
                     <>
