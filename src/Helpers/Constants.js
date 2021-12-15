@@ -12,3 +12,8 @@ export const QUESTION_TYPE = {
         NAME : "Checkbox"
     }
 }
+
+export const MULTIPLE_CHOICE_TYPE = {
+    ADD         : "ADD",
+    TEXTAREA    : "TEXTAREA"
+}

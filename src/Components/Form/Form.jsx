@@ -22,7 +22,7 @@ import { addForm } from "Redux/Data/Actions";
 import { RandomId } from "Helpers/Utils";
 
 // Constants
-import { QUESTION_TYPE } from "Helpers/Constants";
+import { QUESTION_TYPE, MULTIPLE_CHOICE_TYPE } from "Helpers/Constants";
 import { URL_FORM_LIST } from "Helpers/Paths";
 
 function Alert(props) {
@@ -155,6 +155,7 @@ function Form() {
                         error={!form.name}
                         helperText={!form.name ? "Form title is required!" : ""}
                         margin="normal"
+                        placeholder="Add survey name"
                     />
 
                     <Button 
@@ -246,7 +247,6 @@ function Options(props) {
                 <TextField
                     hiddenLabel
                     className="form-name"
-                    value = ""
                     variant="filled"
                     fullWidth
                     margin="normal"
@@ -260,9 +260,29 @@ function Options(props) {
                 <FormControl>
                     <RadioGroup>
                         {
-                            question.options.map((option, index) => (
-                                <FormControlLabel value={option.option} key={index} control={<Radio  disabled = {isRead}/>} label={option.option} />
-                            ))
+                            question.multipleChoiceType === MULTIPLE_CHOICE_TYPE.ADD && 
+                                <>
+                                    {
+                                        question.options.map((option, index) => (
+                                            <FormControlLabel value={option.option} key={index} control={<Radio  disabled = {isRead}/>} label={option.option} />
+                                        ))
+                                    }
+                                </>
+                        }
+                        {
+                            question.multipleChoiceType === MULTIPLE_CHOICE_TYPE.TEXTAREA && 
+                                <>
+                                    {
+                                        question.optionText.split("\n").map((line,index) => (
+                                            <>
+                                            {
+                                                line &&
+                                                    <FormControlLabel value={line} key={index} control={<Radio  disabled = {isRead}/>} label={line} />
+                                            }
+                                            </>
+                                        ))
+                                    }
+                                </>
                         }
                     </RadioGroup>
                 </FormControl>
@@ -273,9 +293,29 @@ function Options(props) {
                 <FormControl>
                     <RadioGroup>
                         {
-                            question.options.map((option, index) => (
-                                <FormControlLabel value={option.option} key={index} control={<Checkbox  disabled = {isRead}/>} label={option.option} />
-                            ))
+                            question.multipleChoiceType === MULTIPLE_CHOICE_TYPE.ADD && 
+                                <>
+                                    {
+                                        question.options.map((option, index) => (
+                                            <FormControlLabel value={option.option} key={index} control={<Checkbox  disabled = {isRead}/>} label={option.option} />
+                                        ))
+                                    }
+                                </>
+                        }
+                         {
+                            question.multipleChoiceType === MULTIPLE_CHOICE_TYPE.TEXTAREA && 
+                                <>
+                                    {
+                                        question.optionText.split("\n").map((line,index) => (
+                                            <>
+                                            {
+                                                line &&
+                                                    <FormControlLabel value={line} key={index} control={<Checkbox  disabled = {isRead}/>} label={line} />
+                                            }
+                                            </>
+                                        ))
+                                    }
+                                </>
                         }
                     </RadioGroup>
                 </FormControl>
